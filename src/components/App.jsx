@@ -6,6 +6,8 @@ import ContactsForm from "./ContactsForm/ContactsForm";
 import ContactsList from "./ContactsList/ContactsList";
 import Filter from "./Filter/Filter";
 
+import { getFilteredContacts } from "redux/contacts/contacts-selectors";
+
 import styles from "./app.module.css";
 
 const App = () => {
@@ -65,19 +67,7 @@ useEffect (()=>{
   const changeFilter = ({target}) => setFilter(target.value);
   
 
-  const getFilteredContacts = () => {
-    if (!filter){
-          return contacts;
-        }
-    
-        const normalizedFilter=filter.toLowerCase();
-    
-        const filteredContacts = contacts.filter(({name}) => {
-        const normalizedName=name.toLowerCase();
-        return (normalizedName.includes(normalizedFilter))
-    });
-    return filteredContacts;
-    }
+  
   
 
     const items=getFilteredContacts();
